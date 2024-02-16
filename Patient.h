@@ -4,19 +4,15 @@
 #include "Person.h"
 
 class Patient : public Person {
- private:
-  int patientID;
- Public:
-  Patient(std::string t, std::string fn, std::string sn, std::string a, std::string e, int ID) {
-    setTitle(t);
-    setFirstName(fn);
-    setSurname(sn);
-    setAddress(a);
-    setEmail(e);
-    setPatientID(ID);
-  }
-  void setPatientID(int ID);
-  int getPatientID();
+private:
+    int patientID;
+
+public:
+    Patient(const std::string& t, const std::string& fn, const std::string& sn, const std::string& a, const std::string& e, int ID)
+    : Person(t, fn, sn, a, e), patientID(ID) {}
+
+    void setPatientID(int ID);
+    int getPatientID() const;
 };
 
-#endif
+#endif // PATIENT_H
