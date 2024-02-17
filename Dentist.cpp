@@ -1,5 +1,7 @@
 #include "Dentist.h"
 
+//Setter methods.
+
 void Dentist::setDentistID(int ID) {
   dentistID = ID;
 }
@@ -7,6 +9,8 @@ void Dentist::setDentistID(int ID) {
 void Dentist::setSalary(int s) {
   salary = s;
 }
+
+//Getter methods.
 
 int Dentist::getDentistID() const {
   return dentistID;

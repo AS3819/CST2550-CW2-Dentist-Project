@@ -1,5 +1,7 @@
 #include "Person.h"
 
+//Setter methods.
+
 void Person::setTitle(const std::string& t) {
     title = t;
 }
@@ -19,6 +21,8 @@ void Person::setAddress(const std::string& a) {
 void Person::setEmail(const std::string& e) {
     email = e;
 }
+
+//Getter methods.
 
 std::string Person::getTitle() const {
     return title;
