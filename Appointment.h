@@ -6,25 +6,34 @@
 #include "Patient.h"
 
 class Appointment {
-private:
-    int room;
-    std::chrono::system_clock::time_point date;
-    Dentist* dentist;
-    Patient* patient;
-    bool isFree;
+ private:
+  int room;
+  std::chrono::system_clock::time_point date;
+  Dentist* dentist;
+  Patient* patient;
+  bool isFree;
+  
+ public:
+  Appointment(int r, std::chrono::system_clock::time_point dt, Dentist* d) {
+    setRoom(r);
+    setDate(dt);
+    setDentist(d);
+    setPatient(nullptr);
+    isFree = true;
+  }
 
-public:
-    Appointment(int room, std::chrono::system_clock::time_point date, Dentist* dentist, bool isFree, Patient* patient = nullptr)
-        : room(room), date(date), dentist(dentist), isFree(isFree), patient(patient) {}
+  //Public setter methods.
+  void setRoom(int newRoom);
+  void setDate(std::chrono::system_clock::time_point newDate);
+  void setDentist(Dentist* newDentist);
+  void setPatient(Patient* newPatient);
 
-    void setPatient(Patient* newPatient);
-
-    // Public getter methods
-    int getRoom() const { return room; }
-    std::chrono::system_clock::time_point getDate() const { return date; }
-    Dentist* getDentist() const { return dentist; }
-    Patient* getPatient() const { return patient; }
-    bool getIsFree() const { return isFree; }
+  //Public getter methods.
+  int getRoom() const;
+  std::chrono::system_clock::time_point getDate() const;
+  Dentist* getDentist() const;
+  Patient* getPatient() const;
+  bool getIsFree() const;
 };
 
 #endif // APPOINTMENT_H
