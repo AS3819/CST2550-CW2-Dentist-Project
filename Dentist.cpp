@@ -1,17 +1,17 @@
 #include "Dentist.h"
 
-void setDentistID(int ID) {
+void Dentist::setDentistID(int ID) {
   dentistID = ID;
 }
 
-void setSalary(int s) {
+void Dentist::setSalary(int s) {
   salary = s;
 }
 
-int getDentistID() {
+int Dentist::getDentistID() const {
   return dentistID;
 }
 
-int getSalary() {
+int Dentist::getSalary() const {
   return salary;
 }

@@ -1,9 +1,11 @@
 #include "Patient.h"
 
-void setPatientID(int ID) {
-  patientID = ID;
+// Set the patient ID
+void Patient::setPatientID(int ID) {
+    patientID = ID;
 }
 
-int getPatientID() {
-  return patientID;
+// Get the patient ID
+int Patient::getPatientID() const {
+    return patientID;
 }

@@ -4,23 +4,18 @@
 #include "Person.h"
 
 class Dentist : public Person {
- private:
-  int dentistID;
-  int salary;
- Public:
-  Dentist(std::string t, std::string fn, std::string sn, std::string a, std::string e, int ID, int s) {
-    setTitle(t);
-    setFirstName(fn);
-    setSurname(sn);
-    setAddress(a);
-    setEmail(e);
-    setDentistID(ID);
-    setSalary(s);
-  }
-  void setDentistID(int ID);
-  void setSalary(int s);
-  int getDentistID();
-  int getSalary();
+private:
+    int dentistID;
+    int salary;
+
+public:
+    Dentist(const std::string& title, const std::string& firstName, const std::string& surname, const std::string& address, const std::string& email, int dentistID, int salary)
+            : Person(title, firstName, surname, address, email), dentistID(dentistID), salary(salary) {}
+            
+    void setDentistID(int ID);
+    void setSalary(int s);
+    int getDentistID() const;
+    int getSalary() const;
 };
 
 #endif

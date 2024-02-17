@@ -1,41 +1,41 @@
 #include "Person.h"
 
-void setTitle(std::string t) {
-  title = t;
+void Person::setTitle(const std::string& t) {
+    title = t;
 }
 
-void setFirstName(std::string fn) {
-  firstName = fn;
+void Person::setFirstName(const std::string& fn) {
+    firstName = fn;
 }
 
-void setSurname(std::string sn) {
-  surname = sn;
+void Person::setSurname(const std::string& sn) {
+    surname = sn;
 }
 
-void setAddress(std::string a) {
-  address = a;
+void Person::setAddress(const std::string& a) {
+    address = a;
 }
 
-void setEmail(std::string e) {
-  email = e;
+void Person::setEmail(const std::string& e) {
+    email = e;
 }
 
-std::string getTitle() {
-  return title;
+std::string Person::getTitle() const {
+    return title;
 }
 
-std::string getFirstName() {
-  return firstName;
+std::string Person::getFirstName() const {
+    return firstName;
 }
 
-std::string getSurname() {
-  return surname;
+std::string Person::getSurname() const {
+    return surname;
 }
 
-std::string getAddress() {
-  return address;
+std::string Person::getAddress() const {
+    return address;
 }
 
-std::string getEmail() {
-  return email;
+std::string Person::getEmail() const {
+    return email;
 }
