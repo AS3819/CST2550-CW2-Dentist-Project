@@ -1,6 +1,7 @@
 #include "QuickSort.h"
 #include "Dentist.h"
 #include "Patient.h"
+#include "CSVSearcher.h"
 #include "Appointment.h"
 #include <vector>
 #include <chrono>
@@ -39,5 +40,15 @@ int main()
     // Sort and print appointments after setting appointment
     // Output now shows room 2 is booked, so booking system working and sorting system working.
     sorter.sortAppointments(appointments);
+    
+    std::cout << "" << std::endl;
+    
+    CSVSearcher searcher;
+    std::string filename = "dentist_office.csv";
+    // Example searching for a room
+    searcher.searchInCSV(filename, "101", "Room");
+    // Example searching for a dentist by name
+    searcher.searchInCSV(filename, "Dr. Smith", "Dentist");
+    
     return 0;
 }
