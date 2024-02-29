@@ -20,9 +20,9 @@ int main()
 
     // Create appointments
     std::vector<Appointment> appointments;
-    appointments.push_back(Appointment(1, std::chrono::system_clock::now() - std::chrono::hours(24), &drSmith, true));
-    appointments.push_back(Appointment(2, std::chrono::system_clock::now() + std::chrono::hours(14), &drSmith, true));
-    appointments.push_back(Appointment(3, std::chrono::system_clock::now() + std::chrono::hours(24), &drSmith, true));
+    appointments.push_back(Appointment(1, std::chrono::system_clock::now() - std::chrono::hours(24), &drSmith));
+    appointments.push_back(Appointment(2, std::chrono::system_clock::now() + std::chrono::hours(14), &drSmith));
+    appointments.push_back(Appointment(3, std::chrono::system_clock::now() + std::chrono::hours(24), &drSmith));
 
     // Sort and print appointments
     sorter.sortAppointments(appointments);

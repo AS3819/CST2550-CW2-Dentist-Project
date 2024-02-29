@@ -66,7 +66,7 @@ void CSVSearcher::searchInCSV(const std::string &filename, const std::string &se
     while (getline(file, line))
     {
         std::vector<std::string> tokens = split(line, ',');
-        if (tokens.size() > columnIndex && tokens[columnIndex].find(searchTerm) != std::string::npos)
+        if (static_cast<size_t>(columnIndex) < tokens.size() && tokens[columnIndex].find(searchTerm) != std::string::npos)
         {
             std::cout << "Found: " << line << std::endl;
             found = true;
