@@ -6,10 +6,10 @@ all: Dentist_Programme Dentist_Test Quicksort_Test
 Dentist_Test: Dentist_Programme.cpp Print_Functions.h
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-Dentist_Programme: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o CSVSearcher.o AppointmentDisplay.o
+Dentist_Programme: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o CSVSearcher.o AppointmentDisplay.o DentistManager.o AppointmentManager.o DateTimeUtils.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-Quicksort_Test: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o CSVSearcher.o AppointmentDisplay.o
+Quicksort_Test: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o CSVSearcher.o AppointmentDisplay.o DentistManager.o AppointmentManager.o DateTimeUtils.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 Person.o: Person.cpp Person.h

@@ -7,7 +7,7 @@
 class AppointmentDisplay {
 public:
     // Displays available appointments for a given list
-    static void displayAvailableAppointments(const std::vector<Appointment>& appointments);
+    static void displayAppointments(const std::vector<Appointment>& appointments);
 };
 
 #endif // APPOINTMENTDISPLAY_H

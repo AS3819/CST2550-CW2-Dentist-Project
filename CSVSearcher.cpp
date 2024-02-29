@@ -3,6 +3,26 @@
 #include <iostream>
 #include <fstream>
 
+// Method to read CSV and return the data
+std::vector<std::vector<std::string>> CSVSearcher::readCSV(const std::string &filename) {
+    std::vector<std::vector<std::string>> data;
+    std::ifstream file(filename);
+    std::string line;
+    if (!file.is_open()) {
+        std::cerr << "Could not open the file - '" << filename << "'" << std::endl;
+        return data;
+    }
+
+    // Skip the header
+    std::getline(file, line);
+
+    while (std::getline(file, line)) {
+        data.push_back(split(line, ','));
+    }
+
+    file.close();
+    return data;
+}
 // Method to split a string by a delimiter and return a vector
 std::vector<std::string> CSVSearcher::split(const std::string &s, char delimiter)
 {
