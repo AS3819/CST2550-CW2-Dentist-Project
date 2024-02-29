@@ -6,6 +6,7 @@
 #include <vector>
 #include <chrono>
 #include <iostream>
+#include "AppointmentDisplay.h"
 
 int main()
 {
@@ -50,5 +51,13 @@ int main()
     // Example searching for a dentist by name
     searcher.searchInCSV(filename, "Dr. Smith", "Dentist");
     
+    std::cout << "" << std::endl;
+    std::cout << "" << std::endl;
+    std::cout << "" << std::endl;
+    std::cout << "" << std::endl;
+    
+    AppointmentDisplay::displayAvailableAppointments(appointments);
+
+
     return 0;
 }
