@@ -3,7 +3,7 @@
 
 #include <string>
 
-bool isEmpty(std::string input);
-bool isIntegerString(std::string input);
+bool isEmpty(const std::string& input);
+bool isIntegerString(const std::string& input);
 
 #endif
