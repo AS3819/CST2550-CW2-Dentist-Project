@@ -6,7 +6,6 @@
 
 void QuickSort::sortAppointments(std::vector<Appointment>& appointments) {
     quicksort(appointments, 0, appointments.size() - 1);
-    printAppointments(appointments);
 }
 
 int QuickSort::partition(std::vector<Appointment>& appointments, int low, int high) {
