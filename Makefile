@@ -3,11 +3,17 @@ CXXFLAGS = -Wall -Wextra -Wpedantic
 
 all: Dentist_Programme Quicksort_Test
 
-Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Input_Validation.o
+Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Interface.o Calendar.o Input_Validation.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 Quicksort_Test: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+Interface.o: Interface.cpp Interface.h
+	$(CXX) $(CXXFLAGS) -c $<
+
+Calendar.o: Calendar.cpp Calendar.h
+	$(CXX) $(CXXFLAGS) -c $<
 
 Input_Validation.o: Input_Validation.cpp Input_Validation.h
 	$(CXX) $(CXXFLAGS) -c $<
