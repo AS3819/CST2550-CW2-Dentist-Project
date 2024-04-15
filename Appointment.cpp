@@ -2,7 +2,7 @@
 
 //Setter methods.
 
-void Appointment::setRoom(int newRoom) {
+void Appointment::setRoom(Room* newRoom) {
   room = newRoom;
 }
 
@@ -23,7 +23,7 @@ void Appointment::setPatient(Patient* newPatient) {
 
 //Getter methods.
 
-int Appointment::getRoom() const {
+Room* Appointment::getRoom() const {
   return room;
 }
 
