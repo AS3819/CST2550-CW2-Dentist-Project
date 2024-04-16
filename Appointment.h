@@ -4,7 +4,7 @@
 #include <chrono>
 #include "Dentist.h"
 #include "Patient.h"
-#inclide "Room.h"
+#include "Room.h"
 
 //Prototype class for 'Room', to prevent recursive inclusion.
 
@@ -12,6 +12,7 @@ class Room;
 
 class Appointment {
  private:
+  int appointmentID;
   Room* room;
   std::chrono::system_clock::time_point date;
   Dentist* dentist;
@@ -19,7 +20,8 @@ class Appointment {
   bool isFree;
   
  public:
-  Appointment(Room* r, std::chrono::system_clock::time_point dt, Dentist* d) {
+  Appointment(int ID, Room* r, std::chrono::system_clock::time_point dt, Dentist* d) {
+    setID(ID);
     setRoom(r);
     setDate(dt);
     setDentist(d);
@@ -28,12 +30,14 @@ class Appointment {
   }
 
   //Public setter methods.
+  void setID(int ID);
   void setRoom(Room* newRoom);
   void setDate(std::chrono::system_clock::time_point newDate);
   void setDentist(Dentist* newDentist);
   void setPatient(Patient* newPatient);
 
   //Public getter methods.
+  int getID() const;
   Room* getRoom() const;
   std::chrono::system_clock::time_point getDate() const;
   Dentist* getDentist() const;
