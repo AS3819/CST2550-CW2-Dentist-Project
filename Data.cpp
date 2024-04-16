@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Data.h"
 
 //Setter methods.
@@ -6,7 +7,7 @@ void Data::setDentists(std::vector<Dentist> d) {
   dentists = d;
 }
   
-void Data::setPatients(std::vector<Patients> p) {
+void Data::setPatients(std::vector<Patient> p) {
   patients = p;
 }
   
@@ -20,25 +21,25 @@ void Data::setRooms(std::vector<Room> r) {
 
 //Adder methods.
 
-void addDentist(Dentist d) {
+void Data::addDentist(Dentist d) {
   dentists.push_back(d);
 }
 
-void addPatient(Patient p) {
+void Data::addPatient(Patient p) {
   patients.push_back(p);
 }
 
-void addAppointment(Appointment a) {
+void Data::addAppointment(Appointment a) {
   appointments.push_back(a);
 }
 
-void addRoom(Room r) {
+void Data::addRoom(Room r) {
   rooms.push_back(r);
 }
 
 //Remover methods.
 
-void removeDentist(Dentist d) {
+void Data::removeDentist(Dentist d) {
   for (unsigned short int i; i < dentists.size(); i++) {
      if (dentists[i].getDentistID() == d.getDentistID()) {
        dentists.erase(dentists.begin() + i);
@@ -47,7 +48,7 @@ void removeDentist(Dentist d) {
    }
 }
 
-void removePatient(Patient p) {
+void Data::removePatient(Patient p) {
   for (unsigned short int i; i < patients.size(); i++) {
      if (patients[i].getPatientID() == p.getPatientID()) {
        patients.erase(patients.begin() + i);
@@ -56,7 +57,7 @@ void removePatient(Patient p) {
    }
 }
 
-void removeAppointment(Appointment a) {
+void Data::removeAppointment(Appointment a) {
   for (unsigned short int i; i < appointments.size(); i++) {
      if (appointments[i].getID() == a.getID()) {
        appointments.erase(appointments.begin() + i);
@@ -65,7 +66,7 @@ void removeAppointment(Appointment a) {
    }
 }
 
-void removeRoom(Room r) {
+void Data::removeRoom(Room r) {
   for (unsigned short int i; i < rooms.size(); i++) {
      if (rooms[i].getID() == r.getID()) {
        rooms.erase(rooms.begin() + i);
@@ -76,18 +77,34 @@ void removeRoom(Room r) {
 
 //Getter methods.
 
-std::vector<Dentist> getDentists() const {
+std::vector<Dentist> Data::getDentists() const {
   return dentists;
 }
 
-std::vector<Patient> getPatients() const {
+std::vector<Patient> Data::getPatients() const {
   return patients;
 }
 
-std::vector<Appointment> getAppointments() const {
+std::vector<Appointment> Data::getAppointments() const {
   return appointments;
 }
 
-std::vector<Room> getRooms() const {
+std::vector<Room> Data::getRooms() const {
   return rooms;
+}
+
+Dentist Data::getDentist(int index) const {
+  return dentists[index];
+}
+
+Patient Data::getPatient(int index) const {
+  return patients[index];
+}
+
+Appointment Data::getAppointment(int index) const {
+  return appointments[index];
+}
+
+Room Data::getRoom(int index) const {
+  return rooms[index];
 }

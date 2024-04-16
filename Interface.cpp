@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Interface.h"
 #include "Print_Functions.h"
+#include "Data.h"
 
 void mainMenu();
 void displayMenu();

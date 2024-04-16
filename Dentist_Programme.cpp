@@ -1,13 +1,13 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <ctime>
+#include "Data.h"
+#include "CSV_Reader.h"
 #include "Interface.h"
 
 int main() {
 
-  Interface interface;
+  Data data;
+  CSV_Reader reader(&data);
+  Interface interface(&data);
 
   interface.printMenu(0);
   interface.mainMenu();

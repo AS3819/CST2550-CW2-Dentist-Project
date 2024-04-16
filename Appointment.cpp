@@ -2,11 +2,15 @@
 
 //Setter methods.
 
+void Appointment::setID(int ID) {
+  appointmentID = ID;
+}
+
 void Appointment::setRoom(Room* newRoom) {
   room = newRoom;
 }
 
-void Appointment::setDate(std::chrono::system_clock::time_point newDate) {
+void Appointment::setDate(unsigned long int newDate) {
   date = newDate;
 }
 
@@ -23,11 +27,15 @@ void Appointment::setPatient(Patient* newPatient) {
 
 //Getter methods.
 
+int Appointment::getID() const {
+  return appointmentID;
+}
+
 Room* Appointment::getRoom() const {
   return room;
 }
 
-std::chrono::system_clock::time_point Appointment::getDate() const {
+unsigned long int Appointment::getDate() const {
   return date;
 }
 

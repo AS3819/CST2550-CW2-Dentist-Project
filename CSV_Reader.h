@@ -4,22 +4,30 @@
 #include <fstream>
 #include <sstream>
 #include "Data.h"
-#include "Dentist.h"
+#include "Dentist.h" 
 #include "Patient.h"
 #include "Appointment.h"
 
 class CSV_Reader {
  private:
-  Data data;
-  std::string dentistsFile;
-  std::string patientsFile;
-  std::string roomsFile;
-  std::string appointmentsFile;
-  void  getLineIgnoringQuotes(std::istream& input, std::string& result, char delimiter = ',');
+  Data* data;
+  std::ifstream dentistsFile;
+  std::ifstream patientsFile;
+  std::ifstream roomsFile;
+  std::ifstream appointmentsFile;
+  std::ofstream dentistsFileWrite;
+  std::ofstream patientsFileWrite;
+  std::ofstream roomsFileWrite;
+  std::ofstream appointmentsFileWrite;
+  std::string dentistsFileName;
+  std::string patientsFileName;
+  std::string roomsFileName;
+  std::string appointmentsFileName;
  public:
-  CSV_Reader(Data d) {
+  CSV_Reader(Data* d) {
     data = d;
   }
+  void getLineIgnoringQuotes(std::istream& input, std::string& result);
   void readDentistsFile();
   void readPatientsFile();
   void readRoomsFile();

@@ -5,7 +5,7 @@
 #include "Dentist.h"
 #include "Patient.h"
 #include "Appointment.h"
-#inclide "Room.h"
+#include "Room.h"
 
 //Prototype classes, to prevent recursive inclusion.
 
@@ -23,7 +23,7 @@ class Data {
  public:
   //Public setter methods.
   void setDentists(std::vector<Dentist> d);
-  void setPatients(std::vector<Patients> p);
+  void setPatients(std::vector<Patient> p);
   void setAppointments(std::vector<Appointment> a);
   void setRooms(std::vector<Room> r);
 
@@ -44,6 +44,11 @@ class Data {
   std::vector<Patient> getPatients() const;
   std::vector<Appointment> getAppointments() const;
   std::vector<Room> getRooms() const;
+
+  Dentist getDentist(int index) const;
+  Patient getPatient(int index) const;
+  Appointment getAppointment(int index) const;
+  Room getRoom(int index) const;
 };
 
 #endif // DATA_H

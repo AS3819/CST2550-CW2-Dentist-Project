@@ -1,7 +1,6 @@
 #ifndef APPOINTMENT_H
 #define APPOINTMENT_H
 
-#include <chrono>
 #include "Dentist.h"
 #include "Patient.h"
 #include "Room.h"
@@ -14,13 +13,13 @@ class Appointment {
  private:
   int appointmentID;
   Room* room;
-  std::chrono::system_clock::time_point date;
+  unsigned long int date;
   Dentist* dentist;
   Patient* patient;
   bool isFree;
   
  public:
-  Appointment(int ID, Room* r, std::chrono::system_clock::time_point dt, Dentist* d) {
+  Appointment(int ID, Room* r, unsigned long int dt, Dentist* d) {
     setID(ID);
     setRoom(r);
     setDate(dt);
@@ -29,17 +28,26 @@ class Appointment {
     isFree = true;
   }
 
+  Appointment(int ID, Room* r, unsigned long int dt, Dentist* d, Patient* p) {
+    setID(ID);
+    setRoom(r);
+    setDate(dt);
+    setDentist(d);
+    setPatient(p);
+    isFree = false;
+  }
+
   //Public setter methods.
   void setID(int ID);
   void setRoom(Room* newRoom);
-  void setDate(std::chrono::system_clock::time_point newDate);
+  void setDate(unsigned long int newDate);
   void setDentist(Dentist* newDentist);
   void setPatient(Patient* newPatient);
 
   //Public getter methods.
   int getID() const;
   Room* getRoom() const;
-  std::chrono::system_clock::time_point getDate() const;
+  unsigned long int getDate() const;
   Dentist* getDentist() const;
   Patient* getPatient() const;
   bool getIsFree() const;
