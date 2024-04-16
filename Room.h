@@ -13,6 +13,9 @@ class Room {
   int roomID;
   std::vector<Appointment> appointments;
  public:
+  Room() {
+    setID(0);
+  }
   Room(int ID) {
     setID(ID);
   }

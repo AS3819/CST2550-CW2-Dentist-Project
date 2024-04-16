@@ -25,9 +25,9 @@ class Appointment {
     setDate(dt);
     setDentist(d);
     setPatient(nullptr);
-    isFree = true;
+    isFree = false;
   }
-
+  
   Appointment(int ID, Room* r, unsigned long int dt, Dentist* d, Patient* p) {
     setID(ID);
     setRoom(r);

@@ -22,18 +22,22 @@ void Data::setRooms(std::vector<Room> r) {
 //Adder methods.
 
 void Data::addDentist(Dentist d) {
+  std::cout << "Adding dentist: " << d.getDentistID() << std::endl;
   dentists.push_back(d);
 }
 
 void Data::addPatient(Patient p) {
+  std::cout << "Adding patient: " << p.getPatientID() << std::endl;
   patients.push_back(p);
 }
 
 void Data::addAppointment(Appointment a) {
+  //std::cout << "Adding appointment: " << a.getID() << std::endl;
   appointments.push_back(a);
 }
-
+ 
 void Data::addRoom(Room r) {
+  std::cout << "Adding room: " << r.getID() << std::endl;
   rooms.push_back(r);
 }
 

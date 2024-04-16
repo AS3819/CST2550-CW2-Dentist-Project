@@ -1,5 +1,6 @@
 #include <iostream>
 #include "CSV_Reader.h"
+#include "Print_Functions.h"
 
 //Function for getting lines as inputs while ignoring commas as delimiters if they are withing double quotation marks.
 
@@ -74,7 +75,6 @@ void CSV_Reader::readPatientsFile() {
     std::string surname;
     std::string address;
     std::string email;
-    std::string salary;
 
     std::stringstream inputString(line);
 
@@ -83,7 +83,7 @@ void CSV_Reader::readPatientsFile() {
     getLineIgnoringQuotes(inputString, firstName);
     getLineIgnoringQuotes(inputString, surname);
     getLineIgnoringQuotes(inputString, address);
-    getLineIgnoringQuotes(inputString, email);
+    std::getline(inputString, email, ' ');
 
     Patient newPatient(title, firstName, surname, address, email, stoi(patientID));
     data->addPatient(newPatient);
@@ -107,7 +107,7 @@ void CSV_Reader::readRoomsFile() {
 
     std::stringstream inputString(line);
 
-    getLineIgnoringQuotes(inputString, roomID);
+    std::getline(inputString, roomID, ' ');
 
     Room newRoom(stoi(roomID));
     data->addRoom(newRoom);
@@ -138,18 +138,79 @@ void CSV_Reader::readAppointmentsFile() {
     getLineIgnoringQuotes(inputString, roomID);
     getLineIgnoringQuotes(inputString, dentistID);
     getLineIgnoringQuotes(inputString, patientID);
-    getLineIgnoringQuotes(inputString, time);
+    std::getline(inputString, time, ' ');
 
     unsigned long int parsedTime = stoi(time);
     Room room = data->getRoom(stoi(roomID) - 1);
     Dentist dentist = data->getDentist(stoi(dentistID) - 1);
     Patient patient = data->getPatient(stoi(patientID) - 1);
-    
 
     Appointment newAppointment(stoi(appointmentID), &room, parsedTime, &dentist, &patient);
     data->addAppointment(newAppointment);
-    
+    //std::cout << data->getAppointment(0).getDentist()->getFirstName() << std::endl;
     line = "";
   }
   
+}
+
+void CSV_Reader::fileSelection() {
+
+  std::string userInput = "";
+
+  bool valid = false;
+  
+  std::cin  >> userInput;
+
+  if (userInput == "Yes" || userInput == "yes" || userInput == "Y" || userInput == "y") {
+    userInput = "";
+    dentistsFileName = defaultDentistsFileName;
+    patientsFileName = defaultPatientsFileName;
+    roomsFileName = defaultRoomsFileName;
+    appointmentsFileName = defaultAppointmentsFileName;
+    valid = true;
+  } else if (userInput == "No" || userInput == "no" || userInput == "N" || userInput == "n") {
+    userInput = "";
+    println("Enter the name of the .csv file for the dentists.");
+    std::cin  >> dentistsFileName;
+    println("Enter the name of the .csv file for the patients.");
+    std::cin  >> patientsFileName;
+    println("Enter the name of the .csv file for the rooms.");
+    std::cin  >> roomsFileName;
+    println("Enter the name of the .csv file for the appointments.");
+    std::cin  >> appointmentsFileName;
+    valid = true;
+  } else {
+    println("Invalid input. Enter either 'yes' or 'no'.");
+    userInput = "";
+    fileSelection();
+  }
+
+  if (valid) {
+    dentistsFile.open(dentistsFileName);
+    if (dentistsFile.fail()){
+	std::cout << "Error, " << dentistsFileName << " does not exist." << std::endl;
+	exit(1);
+      }
+    patientsFile.open(patientsFileName);
+    if (patientsFile.fail()){
+	std::cout << "Error, " << patientsFileName << " does not exist." << std::endl;
+	exit(1);
+      }
+    roomsFile.open(roomsFileName);
+    if (roomsFile.fail()){
+	std::cout << "Error, " << roomsFileName << " does not exist." << std::endl;
+	exit(1);
+      }
+    appointmentsFile.open(appointmentsFileName);
+    if (appointmentsFile.fail()){
+	std::cout << "Error, " << appointmentsFileName << " does not exist." << std::endl;
+	exit(1);
+      }
+    readDentistsFile();
+    readPatientsFile();
+    readRoomsFile();
+    readAppointmentsFile();
+    println("Welcome to the dentist programme. Select command.");
+  }
+
 }

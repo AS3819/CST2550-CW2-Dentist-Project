@@ -9,6 +9,10 @@ class Dentist : public Person {
   int salary;
 
  public:
+  Dentist() : Person() {
+    setDentistID(0);
+    setSalary(0);
+  }
   Dentist(const std::string& t, const std::string& fn, const std::string& sn, const std::string& a, const std::string& e, int ID, int s) : Person(t, fn, sn, a, e) {
     setDentistID(ID);
     setSalary(s);
