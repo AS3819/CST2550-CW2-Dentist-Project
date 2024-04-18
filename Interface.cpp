@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Interface.h"
 #include "Print_Functions.h"
+#include "View.h"
 #include "Data.h"
+#include "Book.h"
 
 void mainMenu();
 void displayMenu();
@@ -28,8 +30,7 @@ void Interface::mainMenu() {
     displayMenu();
   } else if (userInput == "Book" || userInput == "book" || userInput == "2") {
     userInput = "";
-    println("Select patient by ID.");
-    bookMenu();
+    book.startBookingProcess();
   } else if (userInput == "Date" || userInput == "date" || userInput == "3") {
     userInput = "";
     println("Enter date to display (in days from today).");
@@ -54,19 +55,18 @@ void Interface::displayMenu() {
 
    if (userInput == "Dentist" || userInput == "dentist" || userInput == "1") {
     userInput = "";
-    println("Select dentist by ID.");
+    view.printDentists();
   } else if (userInput == "Patient" || userInput == "patient" || userInput == "2") {
     userInput = "";
-    println("Select patient by ID.");
+    view.printPatients();
   } else if (userInput == "Appointment" || userInput == "appointment" || userInput == "3") {
     userInput = "";
-    println("Select appointment by ID.");
+    view.printAppointments();
   } else if (userInput == "Room" || userInput == "room" || userInput == "4") {
     userInput = "";
-    println("Select room by ID.");
+    view.printRooms();
   } else if (userInput == "Return" || userInput == "return" || userInput == "5") {
     userInput = "";
-    println("Returning to the main menu.");
     printMenu(0);
     mainMenu();
   } else {
@@ -86,7 +86,7 @@ void Interface::bookMenu() {
     println("Select class to display (dentists, patients, appointments or rooms).");
   } else if (userInput == "Book" || userInput == "book" || userInput == "2") {
     userInput = "";
-    println("Select patient by ID.");
+    book.startBookingProcess();
   } else if (userInput == "Date" || userInput == "date" || userInput == "3") {
     userInput = "";
     println("Enter date to display (in days from today).");

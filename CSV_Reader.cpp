@@ -141,12 +141,21 @@ void CSV_Reader::readAppointmentsFile() {
     std::getline(inputString, time, ' ');
 
     unsigned long int parsedTime = stoi(time);
-    Room room = data->getRoom(stoi(roomID) - 1);
-    Dentist dentist = data->getDentist(stoi(dentistID) - 1);
-    Patient patient = data->getPatient(stoi(patientID) - 1);
+    Room* roomPtr = data->getRoom(stoi(roomID) - 1);
+    Dentist* dentistPtr = data->getDentist(stoi(dentistID) - 1);
+    Patient* patientPtr = nullptr;
 
-    Appointment newAppointment(stoi(appointmentID), &room, parsedTime, &dentist, &patient);
-    data->addAppointment(newAppointment);
+    std::chrono::system_clock::time_point chronoTime = std::chrono::system_clock::from_time_t(parsedTime);
+
+    if (stoi(patientID) != 0) {
+      patientPtr = data->getPatient(std::stoi(patientID) - 1);
+      Appointment newAppointment(stoi(appointmentID), roomPtr, chronoTime, dentistPtr, patientPtr);
+      data->addAppointment(newAppointment);
+    } else {
+      Appointment newAppointment(stoi(appointmentID), roomPtr, chronoTime, dentistPtr);
+      data->addAppointment(newAppointment);
+    }
+
     //std::cout << data->getAppointment(0).getDentist()->getFirstName() << std::endl;
     line = "";
   }

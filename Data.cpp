@@ -22,12 +22,12 @@ void Data::setRooms(std::vector<Room> r) {
 //Adder methods.
 
 void Data::addDentist(Dentist d) {
-  std::cout << "Adding dentist: " << d.getDentistID() << std::endl;
+  //std::cout << "Adding dentist: " << d.getDentistID() << std::endl;
   dentists.push_back(d);
 }
 
 void Data::addPatient(Patient p) {
-  std::cout << "Adding patient: " << p.getPatientID() << std::endl;
+  //std::cout << "Adding patient: " << p.getPatientID() << std::endl;
   patients.push_back(p);
 }
 
@@ -37,7 +37,7 @@ void Data::addAppointment(Appointment a) {
 }
  
 void Data::addRoom(Room r) {
-  std::cout << "Adding room: " << r.getID() << std::endl;
+  //std::cout << "Adding room: " << r.getID() << std::endl;
   rooms.push_back(r);
 }
 
@@ -97,18 +97,18 @@ std::vector<Room> Data::getRooms() const {
   return rooms;
 }
 
-Dentist Data::getDentist(int index) const {
-  return dentists[index];
+Dentist* Data::getDentist(int index) {
+  return &dentists[index];
 }
 
-Patient Data::getPatient(int index) const {
-  return patients[index];
+Patient* Data::getPatient(int index) {
+  return &patients[index];
 }
 
 Appointment Data::getAppointment(int index) const {
   return appointments[index];
 }
 
-Room Data::getRoom(int index) const {
-  return rooms[index];
+Room* Data::getRoom(int index) {
+  return &rooms[index];
 }

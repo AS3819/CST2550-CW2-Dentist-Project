@@ -1,31 +1,170 @@
 #include <iostream>
 #include "View.h"
 #include "Print_Functions.h"
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+#include "QuickSort.h" 
 
 void View::printDentists() {
   for (unsigned short int i = 0; i < data->getDentists().size(); i++) {
-    std::cout << data->getDentist(i).getDentistID() << ") " << data->getDentist(i).getTitle() << " " << data->getDentist(i).getFirstName() << " " << data->getDentist(i).getSurname() << std::endl;
+    Dentist* dentist = data->getDentist(i); 
+    if (dentist != nullptr) {  
+      std::cout << dentist->getDentistID() << ") " << dentist->getTitle() << " "
+                << dentist->getFirstName() << " " << dentist->getSurname() << std::endl;
+    }
   }
 }
+
 
 void View::printPatients() {
   for (unsigned short int i = 0; i < data->getPatients().size(); i++) {
-    std::cout << data->getPatient(i).getPatientID() << ") " << data->getPatient(i).getTitle() << " " << data->getPatient(i).getFirstName() << " " << data->getPatient(i).getSurname() << std::endl;
+    Patient* patient = data->getPatient(i);
+    if (patient != nullptr) {
+      std::cout << patient->getPatientID() << ") " << patient->getTitle() << " "
+                << patient->getFirstName() << " " << patient->getSurname() << std::endl;
+    }
   }
 }
 
+
 void View::printRooms() {
   for (unsigned short int i = 0; i < data->getRooms().size(); i++) {
-    std::cout << "Room No." << data->getRoom(i).getID() << std::endl;
+    Room* room = data->getRoom(i);  
+    if (room != nullptr) {  
+      std::cout << "Room No." << room->getID() << std::endl;
+    }
   }
 }
 
 void View::printAppointments() {
-  for (unsigned short int i = 0; i < data->getAppointments().size(); i++) {
-    std::cout << "ID: " << data->getAppointment(i).getID() << std::endl;
-    std::cout << "Room: " << data->getAppointment(i).getRoom()->getID() << std::endl;
-    std::cout << "Dentist: " << data->getAppointment(i).getDentist()->getTitle() << " " << data->getAppointment(i).getDentist()->getFirstName() << " " << data->getAppointment(i).getDentist()->getSurname() << std::endl;
-    std::cout << "Patient: " << data->getAppointment(i).getPatient()->getTitle() << " " << data->getAppointment(i).getPatient()->getFirstName() << " " << data->getAppointment(i).getPatient()->getSurname() << std::endl;
-    std::cout << "Date: " << data->getAppointment(i).getDate() << std::endl;
-  }
+    auto appointments = data->getAppointments();
+    for (unsigned short int i = 0; i < appointments.size(); i++) {
+        const Appointment& app = appointments[i];
+
+        std::cout << "APPOINTMENT  " << i + 1 << std::endl;
+        std::cout << "ID: " << app.getID() << std::endl;
+
+        if (app.getRoom()) {
+            std::cout << "Room: " << app.getRoom()->getID() << std::endl;
+        } else {
+            std::cout << "Room: None" << std::endl;
+        }
+
+        if (app.getDentist()) {
+            std::cout << "Dentist: " << app.getDentist()->getTitle() << " " 
+                      << app.getDentist()->getFirstName() << " " 
+                      << app.getDentist()->getSurname() << std::endl;
+        } else {
+            std::cout << "Dentist: None" << std::endl;
+        }
+        
+
+        if (app.getPatient()) {
+          if (!app.getPatient()->getTitle().empty()) {
+            std::cout << app.getPatient()->getPatientID() << std::endl;
+            std::cout << "Patient: " << app.getPatient()->getTitle() << " " 
+                      << app.getPatient()->getFirstName() << " " 
+                      << app.getPatient()->getSurname() << std::endl;
+          } else {
+            std::cout << "Patient: None" << std::endl;
+          }
+        } else {
+            std::cout << "Patient: None" << std::endl;
+        }
+
+        std::time_t appointmentTime = std::chrono::system_clock::to_time_t(app.getDate());
+        std::cout << "Date and Time: " << std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d %H:%M") << std::endl;
+
+        
+        std::cout << std::endl;
+    }
 }
+
+
+void View::printSortedAppointments(){
+    auto appointments = data->getAppointments();
+
+    QuickSort sorter;
+    sorter.sortAppointments(appointments);
+
+    for (unsigned short int i = 0; i < appointments.size(); i++) {
+        const Appointment& app = appointments[i];
+
+        std::cout << "APPOINTMENT " << i + 1 << std::endl;
+        std::cout << "ID: " << app.getID() << std::endl;
+
+        if (app.getRoom()) {
+            std::cout << "Room: " << app.getRoom()->getID() << std::endl;
+        } else {
+            std::cout << "Room: None" << std::endl;
+        }
+
+        if (app.getDentist()) {
+            std::cout << "Dentist: " << app.getDentist()->getTitle() << " " 
+                      << app.getDentist()->getFirstName() << " " 
+                      << app.getDentist()->getSurname() << std::endl;
+        } else {
+            std::cout << "Dentist: None" << std::endl;
+        }
+        
+        if (app.getPatient()) {
+            std::cout << "Patient: " << app.getPatient()->getTitle() << " " 
+                      << app.getPatient()->getFirstName() << " " 
+                      << app.getPatient()->getSurname() << std::endl;
+        } else {
+            std::cout << "Patient: None" << std::endl;
+        }
+
+        std::time_t appointmentTime = std::chrono::system_clock::to_time_t(app.getDate());
+        std::cout << "Date and Time: " << std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d %H:%M") << std::endl;
+
+        std::cout << std::endl;
+    }
+}
+
+void View::printDoctorsAvailableAppointments(int dentistId) {
+      auto appointments = data->getAppointments();
+
+        std::vector<Appointment> filteredAppointments;
+        for (const auto& app : appointments) {
+            if (app.getDentist() && app.getDentist()->getDentistID() == dentistId && !app.getPatient()) {
+                filteredAppointments.push_back(app);
+            }
+        }
+
+        QuickSort sorter;
+        sorter.sortAppointments(filteredAppointments);  
+
+        std::cout << std::endl;
+        std::cout << "Showing available appointments for your chosen Dentist:" << std::endl;
+        std::cout << std::endl;
+
+        for (unsigned short int i = 0; i < filteredAppointments.size(); i++) {
+            const Appointment& app = filteredAppointments[i];
+
+            std::cout << "APPOINTMENT " << i + 1 << std::endl;
+            std::cout << "ID: " << app.getID() << std::endl;
+
+            if (app.getRoom()) {
+                std::cout << "Room: " << app.getRoom()->getID() << std::endl;
+            } else {
+                std::cout << "Room: None" << std::endl;
+            }
+
+            if (app.getDentist()) {
+                std::cout << "Dentist: " << app.getDentist()->getTitle() << " " 
+                          << app.getDentist()->getFirstName() << " " 
+                          << app.getDentist()->getSurname() << std::endl;
+            } else {
+                std::cout << "Dentist: None" << std::endl;
+            }
+            
+            std::cout << "Patient: None" << std::endl;
+
+            std::time_t appointmentTime = std::chrono::system_clock::to_time_t(app.getDate());
+            std::cout << "Date and Time: " << std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d %H:%M") << std::endl;
+
+            std::cout << std::endl;
+        }
+    }

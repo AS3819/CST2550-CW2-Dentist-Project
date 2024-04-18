@@ -10,7 +10,7 @@ void Appointment::setRoom(Room* newRoom) {
   room = newRoom;
 }
 
-void Appointment::setDate(unsigned long int newDate) {
+void Appointment::setDate(std::chrono::system_clock::time_point newDate) {
   date = newDate;
 }
 
@@ -19,10 +19,7 @@ void Appointment::setDentist(Dentist* newDentist) {
 }
 
 void Appointment::setPatient(Patient* newPatient) {
-    if (isFree) {
-        patient = newPatient;
-        isFree = false;
-    }
+  patient = newPatient;
 }
 
 //Getter methods.
@@ -35,7 +32,7 @@ Room* Appointment::getRoom() const {
   return room;
 }
 
-unsigned long int Appointment::getDate() const {
+std::chrono::system_clock::time_point Appointment::getDate() const {
   return date;
 }
 

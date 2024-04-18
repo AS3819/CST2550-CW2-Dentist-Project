@@ -45,10 +45,10 @@ class Data {
   std::vector<Appointment> getAppointments() const;
   std::vector<Room> getRooms() const;
 
-  Dentist getDentist(int index) const;
-  Patient getPatient(int index) const;
+  Dentist* getDentist(int index) ;
+  Patient* getPatient(int index) ;
   Appointment getAppointment(int index) const;
-  Room getRoom(int index) const;
+  Room* getRoom(int index) ;
 };
 
 #endif // DATA_H
