@@ -14,6 +14,8 @@ class View {
   void printPatients();
   void printRooms();
   void printAppointments();
+  void printSortedAppointments();
+  void printDoctorsAvailableAppointments(int dentistId);
 };
 
 #endif

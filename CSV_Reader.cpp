@@ -143,11 +143,19 @@ void CSV_Reader::readAppointmentsFile() {
     unsigned long int parsedTime = stoi(time);
     Room* roomPtr = data->getRoom(stoi(roomID) - 1);
     Dentist* dentistPtr = data->getDentist(stoi(dentistID) - 1);
-    Patient* patientPtr = data->getPatient(stoi(patientID) - 1);
+    Patient* patientPtr = nullptr;
 
     std::chrono::system_clock::time_point chronoTime = std::chrono::system_clock::from_time_t(parsedTime);
-    Appointment newAppointment(stoi(appointmentID), roomPtr, chronoTime, dentistPtr, patientPtr);
-    data->addAppointment(newAppointment);
+
+    if (stoi(patientID) != 0) {
+      patientPtr = data->getPatient(std::stoi(patientID) - 1);
+      Appointment newAppointment(stoi(appointmentID), roomPtr, chronoTime, dentistPtr, patientPtr);
+      data->addAppointment(newAppointment);
+    } else {
+      Appointment newAppointment(stoi(appointmentID), roomPtr, chronoTime, dentistPtr);
+      data->addAppointment(newAppointment);
+    }
+
     //std::cout << data->getAppointment(0).getDentist()->getFirstName() << std::endl;
     line = "";
   }
