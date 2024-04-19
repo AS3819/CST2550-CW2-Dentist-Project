@@ -16,10 +16,6 @@ int main() {
 
   println("Would you like to use the default .csv files?");
   reader.fileSelection();
-  //view.printDentists();
-  //view.printPatients();
-  //view.printRooms();
-  //view.printAppointments();
   interface.printMenu(0);
   interface.mainMenu();
   

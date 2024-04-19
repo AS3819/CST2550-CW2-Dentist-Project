@@ -56,15 +56,27 @@ void Interface::displayMenu() {
    if (userInput == "Dentist" || userInput == "dentist" || userInput == "1") {
     userInput = "";
     view.printDentists();
+    println("Select class to display (dentists, patients, appointments or rooms).");
+    printMenu(1);
+    displayMenu();
   } else if (userInput == "Patient" || userInput == "patient" || userInput == "2") {
     userInput = "";
     view.printPatients();
+    println("Select class to display (dentists, patients, appointments or rooms).");
+    printMenu(1);
+    displayMenu();
   } else if (userInput == "Appointment" || userInput == "appointment" || userInput == "3") {
     userInput = "";
     view.printAppointments();
+    println("Select class to display (dentists, patients, appointments or rooms).");
+    printMenu(1);
+    displayMenu();
   } else if (userInput == "Room" || userInput == "room" || userInput == "4") {
     userInput = "";
     view.printRooms();
+    println("Select class to display (dentists, patients, appointments or rooms).");
+    printMenu(1);
+    displayMenu();
   } else if (userInput == "Return" || userInput == "return" || userInput == "5") {
     userInput = "";
     printMenu(0);
