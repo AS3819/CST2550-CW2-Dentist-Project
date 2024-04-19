@@ -1,4 +1,6 @@
 #include "Book.h"
+#include "Print_Functions.h"
+#include "Input_Validation.h"
 #include <iostream>
 #include <limits>
 #include <string>
@@ -15,59 +17,105 @@ void Book::startBookingProcess() {
 }
 
 void Book::selectPatient() {
-    int patientID;
-    std::cout << "Enter patient ID: ";
-    std::cin >> patientID;
-    Patient* patient = data->getPatient(patientID - 1); 
+  std::string patientInput;
+  int patientID;
+  bool valid = false;
+  std::cout << "Enter patient ID (press 0 to cancel): ";
+  std::cin >> patientInput;
+  
+  if (isIntegerString(patientInput)) {
+    patientID = stoi(patientInput);
+    valid = true;
+  } else {
+    println("Invalid input, try again.");
+    selectPatient();
+  }
 
-    if (patient != nullptr) {
-        view->printDentists();
-        selectDentist(patient);
+  if (valid) {
+    Patient* patient = data->getPatient(patientID - 1); 
+    if (patientID != 0) {
+      if (patient != nullptr) {
+	view->printDentists();
+	selectDentist(patient);
+      } else {
+	println("Invalid patient ID, try again.");
+	startBookingProcess();
+      }
     } else {
-        std::cout << "Invalid patient ID, try again.\n";
-        startBookingProcess();
+      println("Booking process cancelled. Returning to the main menu.");
     }
+  }
 }
 
 void Book::selectDentist(Patient* patient) {
-    int dentistID;
-    std::cout << "Enter dentist ID: ";
-    std::cin >> dentistID;
-    Dentist* dentist = data->getDentist(dentistID - 1);  
+  std::string dentistInput;
+  int dentistID;
+  bool valid = false;
+  std::cout << "Enter dentist ID (press 0 to cancel): ";
+  std::cin >> dentistInput;
+  
+  if (isIntegerString(dentistInput)) {
+    dentistID = stoi(dentistInput);
+    valid = true;
+  } else {
+    println("Invalid input, try again.");
+    selectDentist(patient);
+  }
 
-    if (dentist != nullptr) {
+  if (valid) {
+    Dentist* dentist = data->getDentist(dentistID - 1);  
+    if (dentistID != 0) {
+      if (dentist != nullptr) {
         view->printDoctorsAvailableAppointments(dentistID);
         selectAppointmentById(patient, dentist);
-    } else {
-        std::cout << "Invalid dentist ID, try again.\n";
+      } else {
+	println("Invalid patient ID, try again.");
         selectDentist(patient);
+      }
+    } else {
+      println("Booking process cancelled. Returning to the main menu.");
     }
+  }
 }
 
 void Book::selectAppointmentById(Patient* patient, Dentist* dentist) {
-    std::cout << "Enter appointment ID: ";
-    int appointmentId;
-    std::cin >> appointmentId;
+  std::cout << "Enter appointment ID (press 0 to cancel): ";
+  std::string appointmentInput;
+  int appointmentId;
+  bool valid = false;
+  std::cin >> appointmentInput;
 
+  if (isIntegerString(appointmentInput)) {
+    appointmentId = stoi(appointmentInput);
+    valid = true;
+  } else {
+    println("Invalid input, try again.");
+    selectAppointmentById(patient, dentist);
+  }
+
+  if (valid) {
     auto appointments = data->getAppointments();
     bool found = false;
-
+  
     for (auto& appointment : appointments) {
-        if (appointment.getDentist() == dentist &&
-            appointment.getID() == appointmentId &&
-            !appointment.getPatient()) {
-            appointment.setPatient(patient);
-            std::cout << "Appointment booked successfully.\n";
-            confirmBooking(&appointment);
-            found = true;
-            break;
-        }
+      if (appointment.getDentist() == dentist &&
+	  appointment.getID() == appointmentId &&
+	  !appointment.getPatient()) {
+          appointment.setPatient(patient);
+	  std::cout << "Appointment booked successfully.\n";
+	  confirmBooking(&appointment);
+	  found = true;
+	  break;
+      }
     }
 
-    if (!found) {
-        std::cout << "Invalid appointment ID or appointment is not available, try again.\n";
-        selectAppointmentById(patient, dentist);
+    if (!found && appointmentId != 0) {
+      println("Invalid appointment ID or appointment is not available, try again.");
+      selectAppointmentById(patient, dentist);
+    } else {
+      println("Booking process cancelled. Returning to the main menu.");
     }
+  }
 }
 
 void Book::confirmBooking(Appointment* appointment) {

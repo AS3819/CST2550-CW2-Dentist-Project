@@ -31,6 +31,8 @@ void Interface::mainMenu() {
   } else if (userInput == "Book" || userInput == "book" || userInput == "2") {
     userInput = "";
     book.startBookingProcess();
+    printMenu(0);
+    mainMenu();
   } else if (userInput == "Date" || userInput == "date" || userInput == "3") {
     userInput = "";
     println("Enter date to display (in days from today).");
