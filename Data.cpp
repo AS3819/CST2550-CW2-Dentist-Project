@@ -89,8 +89,8 @@ std::vector<Patient> Data::getPatients() const {
   return patients;
 }
 
-std::vector<Appointment> Data::getAppointments() const {
-  return appointments;
+std::vector<Appointment>& Data::getAppointments() {
+    return appointments;
 }
 
 std::vector<Room> Data::getRooms() const {
