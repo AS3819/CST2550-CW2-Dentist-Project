@@ -35,11 +35,11 @@ void Book::selectPatient() {
     Patient* patient = data->getPatient(patientID - 1); 
     if (patientID != 0) {
       if (patient != nullptr) {
-	view->printDentists();
-	selectDentist(patient);
+        view->printDentists();
+        selectDentist(patient);
       } else {
-	println("Invalid patient ID, try again.");
-	startBookingProcess();
+        println("Invalid patient ID, try again.");
+        startBookingProcess();
       }
     } else {
       println("Booking process cancelled. Returning to the main menu.");
@@ -94,25 +94,25 @@ void Book::selectAppointmentById(Patient* patient, Dentist* dentist) {
   }
 
   if (valid) {
-    auto appointments = data->getAppointments();
+    auto& appointments = data->getAppointments();
     bool found = false;
   
     for (auto& appointment : appointments) {
       if (appointment.getDentist() == dentist &&
-	  appointment.getID() == appointmentId &&
-	  !appointment.getPatient()) {
-          appointment.setPatient(patient);
-	  std::cout << "Appointment booked successfully.\n";
-	  confirmBooking(&appointment);
-	  found = true;
-	  break;
+        appointment.getID() == appointmentId &&
+        !appointment.getPatient()) {
+              appointment.setPatient(patient);
+        std::cout << "Appointment booked successfully.\n";
+        confirmBooking(&appointment);
+        found = true;
+        break;
       }
     }
 
     if (!found && appointmentId != 0) {
       println("Invalid appointment ID or appointment is not available, try again.");
       selectAppointmentById(patient, dentist);
-    } else {
+    } else if (!found) {
       println("Booking process cancelled. Returning to the main menu.");
     }
   }

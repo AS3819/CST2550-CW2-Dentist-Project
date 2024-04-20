@@ -42,7 +42,7 @@ class Data {
   //Public getter methods.
   std::vector<Dentist> getDentists() const;
   std::vector<Patient> getPatients() const;
-  std::vector<Appointment> getAppointments() const;
+  std::vector<Appointment>& getAppointments();
   std::vector<Room> getRooms() const;
 
   Dentist* getDentist(int index) ;
