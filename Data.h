@@ -45,7 +45,9 @@ class Data {
   std::vector<Patient> getPatients() const;
   std::vector<Appointment>& getAppointments();
   std::vector<Room> getRooms() const;
-
+  std::vector<Patient>& getPatients();
+  
+  int getMaxPatientID();
   Dentist* getDentist(int index) ;
   Patient* getPatient(int index) ;
   Appointment getAppointment(int index) const;

@@ -88,6 +88,7 @@ Appointment* Data::getAppointmentById(int appointmentId) {
     return nullptr;
 }
 
+// Getter methods.
 
 std::vector<Dentist> Data::getDentists() const {
   return dentists;
@@ -119,6 +120,20 @@ Appointment Data::getAppointment(int index) const {
 
 Room* Data::getRoom(int index) {
   return &rooms[index];
+}
+
+std::vector<Patient>& Data::getPatients() {
+    return patients;
+}
+
+int Data::getMaxPatientID() {
+    int maxId = 0;
+    for (const auto& patient : getPatients()) {
+        if (patient.getPatientID() > maxId) {
+            maxId = patient.getPatientID();
+        }
+    }
+    return maxId;
 }
 
 // Save to csv methods.
