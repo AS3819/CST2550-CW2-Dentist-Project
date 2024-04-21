@@ -26,6 +26,7 @@ class Data {
   void setPatients(std::vector<Patient> p);
   void setAppointments(std::vector<Appointment> a);
   void setRooms(std::vector<Room> r);
+  Appointment* getAppointmentById(int appointmentId);
 
   //Public adder methods.
   void addDentist(Dentist d);

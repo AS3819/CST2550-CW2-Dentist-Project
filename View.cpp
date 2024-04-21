@@ -58,17 +58,12 @@ void View::printAppointments() {
         } else {
             std::cout << "Dentist: None" << std::endl;
         }
-        
 
         if (app.getPatient()) {
-          if (!app.getPatient()->getTitle().empty()) {
-            std::cout << app.getPatient()->getPatientID() << std::endl;
+            std::cout << "Patient ID: " << app.getPatient()->getPatientID() << std::endl;  // Ensure this line is correctly labeled
             std::cout << "Patient: " << app.getPatient()->getTitle() << " " 
                       << app.getPatient()->getFirstName() << " " 
                       << app.getPatient()->getSurname() << std::endl;
-          } else {
-            std::cout << "Patient: None" << std::endl;
-          }
         } else {
             std::cout << "Patient: None" << std::endl;
         }
@@ -76,12 +71,14 @@ void View::printAppointments() {
         std::time_t appointmentTime = std::chrono::system_clock::to_time_t(app.getDate());
         std::cout << "Date and Time: " << std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d %H:%M") << std::endl;
 
-        
+        if (app.getFollowUp()) {
+            std::cout << "Follow-up Appointment: True" << std::endl;
+            std::cout << "Original Appointment ID: " << app.getOriginalAppointmentId() << std::endl;
+        }
+
         std::cout << std::endl;
     }
 }
-
-
 
 void View::printDoctorsAvailableAppointments(int dentistId) {
       const std::vector<Appointment>& appointments = data->getAppointments();
@@ -128,3 +125,35 @@ void View::printDoctorsAvailableAppointments(int dentistId) {
             std::cout << std::endl;
         }
     }
+
+void View::printAllAppointmentsForDentistAndPatient(int dentistId, int patientId) {
+    const std::vector<Appointment>& appointments = data->getAppointments();
+    std::cout << "Listing all appointments for Dentist ID " << dentistId << " and Patient ID " << patientId << ":\n";
+    bool found = false;
+
+    for (unsigned short int i = 0; i < appointments.size(); i++) {
+        const Appointment& app = appointments[i];
+
+        if (app.getDentist() && app.getDentist()->getDentistID() == dentistId && 
+            app.getPatient() && app.getPatient()->getPatientID() == patientId) {
+            found = true;
+            std::cout << "APPOINTMENT " << i + 1 << std::endl;
+            std::cout << "ID: " << app.getID() << std::endl;
+            std::cout << "Room: " << (app.getRoom() ? std::to_string(app.getRoom()->getID()) : "None") << std::endl;
+            std::cout << "Dentist: " << app.getDentist()->getTitle() << " " << app.getDentist()->getFirstName() << " " << app.getDentist()->getSurname() << std::endl;
+            std::cout << "Patient: " << app.getPatient()->getTitle() << " " << app.getPatient()->getFirstName() << " " << app.getPatient()->getSurname() << std::endl;
+            std::time_t appointmentTime = std::chrono::system_clock::to_time_t(app.getDate());
+            std::cout << "Date and Time: " << std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d %H:%M") << std::endl;
+            
+            if (app.getFollowUp()) {
+                std::cout << "Follow-up Appointment: True" << std::endl;
+                std::cout << "Original Appointment ID: " << app.getOriginalAppointmentId() << std::endl;
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    if (!found) {
+        std::cout << "No appointments found for the specified dentist and patient.\n";
+    }
+}

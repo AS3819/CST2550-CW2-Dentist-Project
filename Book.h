@@ -13,6 +13,7 @@ class Book {
 private:
     Data* data;
     View* view;
+    std::string userInput = "";
 
 public:
     Book(Data* data, View* view);
@@ -20,7 +21,10 @@ public:
     void selectPatient();
     void selectDentist(Patient* patient);
     void selectAppointmentById(Patient* patient, Dentist* dentist);
+    void selectFollowUpAppointmentById(Patient* patient, Dentist* dentist, int originalAppointmentId);
     void confirmBooking(Appointment* appointment);
+    void startFollowUpBookingProcess();
+    void selectBookingOption();
 };
 
 #endif
