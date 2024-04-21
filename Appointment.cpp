@@ -22,6 +22,7 @@ void Appointment::setPatient(Patient* newPatient) {
   patient = newPatient;
 }
 
+
 //Getter methods.
 
 int Appointment::getID() const {

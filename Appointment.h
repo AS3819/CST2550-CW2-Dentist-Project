@@ -18,6 +18,8 @@ class Appointment {
   Dentist* dentist;
   Patient* patient;
   bool isFree;
+  bool followUp;
+  int originalAppointmentId;
   
  public:
   Appointment(int ID, Room* r, std::chrono::system_clock::time_point dt, Dentist* d) {
@@ -44,6 +46,8 @@ class Appointment {
   void setDate(std::chrono::system_clock::time_point newDate);
   void setDentist(Dentist* newDentist);
   void setPatient(Patient* newPatient);
+  void setFollowUp(bool value) { followUp = value; }
+  void setOriginalAppointmentId(int value) { originalAppointmentId = value; }
 
   //Public getter methods.
   int getID() const;
@@ -52,6 +56,8 @@ class Appointment {
   Dentist* getDentist() const;
   Patient* getPatient() const;
   bool getIsFree() const;
+  bool getFollowUp() const { return followUp; }
+  int getOriginalAppointmentId() const { return originalAppointmentId; }
 };
 
 #endif // APPOINTMENT_H

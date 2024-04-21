@@ -79,6 +79,15 @@ void Data::removeRoom(Room r) {
    }
 }
 
+Appointment* Data::getAppointmentById(int appointmentId) {
+    for (auto& appointment : appointments) {
+        if (appointment.getID() == appointmentId) {
+            return &appointment;
+        }
+    }
+    return nullptr;
+}
+
 //Getter methods.
 
 std::vector<Dentist> Data::getDentists() const {
