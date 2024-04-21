@@ -48,7 +48,7 @@ Room.o: Room.cpp Room.h
 Quicksort.o: Quicksort.cpp Quicksort.h
 	$(CXX) $(CXXFLAGS) -c $<
 
-Quicksort.o: PatientManager.cpp PatientManager.h
+PatientManager.o: PatientManager.cpp PatientManager.h
 	$(CXX) $(CXXFLAGS) -c $<
 
 .PHONY: clean
