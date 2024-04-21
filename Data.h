@@ -50,6 +50,9 @@ class Data {
   Patient* getPatient(int index) ;
   Appointment getAppointment(int index) const;
   Room* getRoom(int index) ;
+
+  //Public save to csv methods.
+  void saveAppointmentsToCSV(const std::string& filename);
 };
 
 #endif // DATA_H
