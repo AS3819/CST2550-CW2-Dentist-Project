@@ -1,4 +1,4 @@
-Appointment ID,Room ID,Dentist ID,Patient ID,Time, Follow Up, Original Appointment ID
+Appointment ID,Room ID,Dentist ID,Patient ID,Time,Follow Up,Original Appointment ID
 1,1,1,1,1716188400,0,0
 2,2,2,2,1716195600,0,0
 4,4,4,4,1716210000,0,0
@@ -21,7 +21,7 @@ Appointment ID,Room ID,Dentist ID,Patient ID,Time, Follow Up, Original Appointme
 20,2,3,0,1716300000,0,0
 21,4,2,0,1716303600,0,0
 22,4,3,0,1716307200,0,0
-23,1,2,0,1716361200,0,0
+23,1,2,2,1716361200,1,2
 24,5,5,0,1716364800,0,0
 25,5,4,0,1716368400,0,0
 26,3,3,0,1716372000,0,0

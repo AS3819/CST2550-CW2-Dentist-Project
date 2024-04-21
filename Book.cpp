@@ -229,8 +229,9 @@ void Book::startFollowUpBookingProcess() {
 
 void Book::confirmBooking(Appointment* appointment) {
     
-    std::time_t appointmentTime = std::chrono::system_clock::to_time_t(appointment->getDate());
-    std::cout << "Booking confirmed for " << appointment->getPatient()->getFirstName()
-              << " with Dr. " << appointment->getDentist()->getFirstName()
-              << " on " <<  std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d at %H:%M") << "\n";
+  data->saveAppointmentsToCSV("appointments.csv");
+  std::time_t appointmentTime = std::chrono::system_clock::to_time_t(appointment->getDate());
+  std::cout << "Booking confirmed for " << appointment->getPatient()->getFirstName()
+            << " with Dr. " << appointment->getDentist()->getFirstName()
+            << " on " <<  std::put_time(std::localtime(&appointmentTime), "%Y-%m-%d at %H:%M") << "\n";
 }
