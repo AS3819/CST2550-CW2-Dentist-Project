@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -Wextra -Wpedantic
 
 all: Dentist_Programme Quicksort_Test
 
-Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o CSV_Reader.o Interface.o View.o Calendar.o Input_Validation.o Book.o Quicksort.o
+Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o CSV_Reader.o Interface.o View.o Calendar.o Input_Validation.o Book.o Quicksort.o PatientManager.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 Quicksort_Test: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o
@@ -46,6 +46,9 @@ Room.o: Room.cpp Room.h
 	$(CXX) $(CXXFLAGS) -c $<
 
 Quicksort.o: Quicksort.cpp Quicksort.h
+	$(CXX) $(CXXFLAGS) -c $<
+
+Quicksort.o: PatientManager.cpp PatientManager.h
 	$(CXX) $(CXXFLAGS) -c $<
 
 .PHONY: clean
