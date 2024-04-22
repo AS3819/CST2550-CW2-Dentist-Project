@@ -1,4 +1,6 @@
 #include "Input_Validation.h"
+#include "Print_Functions.h"
+#include <limits>
 
 bool isEmpty(const std::string& input) {
   if (input == "") {
@@ -6,6 +8,19 @@ bool isEmpty(const std::string& input) {
   } else {
     return false;
   }
+}
+
+bool getInput(const std::string& prompt, std::string& input) {
+    print(prompt);
+    if (std::cin.peek() == '\n') {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    std::getline(std::cin, input);
+    if (input == "0") {
+        println("Operation cancelled by user.");
+        return false;
+    }
+    return true;
 }
 
 bool isIntegerString(const std::string& input) {

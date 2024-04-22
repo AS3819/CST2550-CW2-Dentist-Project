@@ -48,6 +48,7 @@ class Data {
   std::vector<Patient>& getPatients();
   
   int getMaxPatientID();
+  int getMaxDentistID();
   Dentist* getDentist(int index) ;
   Patient* getPatient(int index) ;
   Appointment getAppointment(int index) const;
