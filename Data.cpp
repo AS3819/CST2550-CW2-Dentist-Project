@@ -135,6 +135,15 @@ int Data::getMaxPatientID() {
     }
     return maxId;
 }
+int Data::getMaxDentistID() {
+    int maxId = 0;
+    for (const auto& dentist : getDentists()) {
+        if (dentist.getDentistID() > maxId) {
+            maxId = dentist.getDentistID();
+        }
+    }
+    return maxId;
+}
 
 // Save to csv methods.
 

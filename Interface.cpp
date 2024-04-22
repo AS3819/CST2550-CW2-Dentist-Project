@@ -39,12 +39,17 @@ void Interface::mainMenu() {
     calendar.printDate();
     printMenu(0);
     mainMenu();
-  } else if (userInput == "Add" || userInput == "add" || userInput == "4") {
+  } else if (userInput == "Add Patient" || userInput == "add patient" || userInput == "4") {
     userInput = "";
     patientManager->addNewPatient();
     printMenu(0);
     mainMenu();
-  } else if (userInput == "Exit" || userInput == "exit" || userInput == "5") {
+  } else if (userInput == "Add Dentist" || userInput == "add dentist" || userInput == "5") {
+    userInput = "";
+    dentistManager->addNewDentist();
+    printMenu(0);
+    mainMenu();
+  } else if (userInput == "Exit" || userInput == "exit" || userInput == "6") {
     userInput = "";
     println("Exiting programme.");
     exit(0);
