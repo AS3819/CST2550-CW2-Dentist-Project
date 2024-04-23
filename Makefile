@@ -1,12 +1,15 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Wpedantic
 
-all: Dentist_Programme Quicksort_Test
+all: Dentist_Programme Quicksort_Test Testing_Programme
 
-Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o CSV_Reader.o Interface.o View.o Calendar.o Input_Validation.o Book.o Quicksort.o PatientManager.o DentistManager.o
+Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o CSV_Reader.o Interface.o View.o Calendar.o Input_Validation.o Book.o Quicksort.o PatientManager.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 Quicksort_Test: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+Testing_Programme: Testing_File.cpp catch.hpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 Data.o: Data.cpp Data.h
@@ -49,9 +52,6 @@ Quicksort.o: Quicksort.cpp Quicksort.h
 	$(CXX) $(CXXFLAGS) -c $<
 
 PatientManager.o: PatientManager.cpp PatientManager.h
-	$(CXX) $(CXXFLAGS) -c $<
-
-DentistManager.o: DentistManager.cpp DentistManager.h
 	$(CXX) $(CXXFLAGS) -c $<
 
 .PHONY: clean
