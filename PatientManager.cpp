@@ -1,9 +1,21 @@
 #include "PatientManager.h"
 #include "Print_Functions.h"
-#include "Input_Validation.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
+
+bool getInput(const std::string& prompt, std::string& input) {
+    print(prompt);
+    if (std::cin.peek() == '\n') {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    } 
+    std::getline(std::cin, input);
+    if (input == "0") {
+        println("Operation cancelled by user.");
+        return false;
+    }
+    return true;
+}
 
 void PatientManager::addNewPatient() {
     std::string title, firstName, surname, address, email;
