@@ -2,7 +2,6 @@
 #define PATIENT_MANAGER_H
 
 #include "Data.h"
-#include "Input_Validation.h"
 
 class PatientManager {
 private:
