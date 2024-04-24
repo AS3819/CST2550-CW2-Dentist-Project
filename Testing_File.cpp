@@ -114,3 +114,46 @@ TEST_CASE("Appointment Initialization") {
 
 
 }
+TEST_CASE("Invalid Dentist Initialization") {
+    Dentist invalidDentist("", "", "", "", "", 0, 0);  // Creating a dentist with invalid data
+    REQUIRE(invalidDentist.getDentistID() == 0);      // Expected to fail
+    REQUIRE(invalidDentist.getSalary() == 0);         // Expected to fail
+
+}
+
+TEST_CASE("Invalid Patient Initialization") {
+    Patient invalidPatient("", "", "", "", "", 0);  // Creating a patient with invalid data
+    REQUIRE(invalidPatient.getPatientID() == 0);    // Expected to fail
+
+}
+
+TEST_CASE("Invalid Appointment Initialization") {
+    Room invalidRoom(0);  // Creating a room with an invalid ID
+    Dentist invalidDentist("", "", "", "", "", 0, 0);
+    Patient invalidPatient("", "", "", "", "", 0);
+    Appointment invalidAppointment(0, &invalidRoom, now, &invalidDentist, &invalidPatient);  // Creating an appointment with invalid data
+    REQUIRE(invalidAppointment.getID() == 0);        // Expected to fail
+    REQUIRE(invalidAppointment.getRoom() == nullptr); // Expected to fail
+    REQUIRE(invalidAppointment.getDentist() == nullptr); // Expected to fail
+    REQUIRE(invalidAppointment.getPatient() == nullptr); // Expected to fail
+
+}
+
+TEST_CASE("Boundary Conditions for Dentist Salary") {
+    REQUIRE(dentist1.getSalary() > 0);   // Ensure salary is positive
+    REQUIRE(dentist2.getSalary() > 0);   // Ensure salary is positive
+    REQUIRE(dentist3.getSalary() > 0);   // Ensure salary is positive
+
+}
+
+TEST_CASE("Boundary Conditions for Patient ID") {
+    REQUIRE(patient1.getPatientID() > 0);   // Ensure patient ID is positive
+    REQUIRE(patient2.getPatientID() > 0);   // Ensure patient ID is positive
+
+}
+
+TEST_CASE("Boundary Conditions for Appointment ID") {
+    REQUIRE(appointment1.getID() > 0);   // Ensure appointment ID is positive
+    REQUIRE(appointment2.getID() > 0);   // Ensure appointment ID is positive
+
+}
