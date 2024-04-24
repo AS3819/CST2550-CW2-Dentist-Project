@@ -65,3 +65,68 @@ TEST_CASE("dentist3", "[dentist3]")
   REQUIRE(dentist3.getEmail() == "email3");
   REQUIRE(dentist3.getSalary() == 40000);
 }
+
+TEST_CASE("patient1", "[patient1]")
+{
+  REQUIRE(patient1.getPatientID() == 1);
+  REQUIRE(patient1.getTitle() == "Mr.");
+  REQUIRE(patient1.getFirstName() == "John");
+  REQUIRE(patient1.getSurname() == "Smith");
+  REQUIRE(patient1.getAddress() == "address1");
+  REQUIRE(patient1.getEmail() == "email1");
+}
+
+TEST_CASE("patient2", "[patient2]")
+{
+  REQUIRE(patient2.getPatientID() == 2);
+  REQUIRE(patient2.getTitle() == "Mr.");
+  REQUIRE(patient2.getFirstName() == "Aaron");
+  REQUIRE(patient2.getSurname() == "Carter");
+  REQUIRE(patient2.getAddress() == "address2");
+  REQUIRE(patient2.getEmail() == "email2");
+}
+
+TEST_CASE("patient3", "[patient3]")
+{
+  REQUIRE(patient3.getPatientID() == 3);
+  REQUIRE(patient3.getTitle() == "Mr.");
+  REQUIRE(patient3.getFirstName() == "Brian");
+  REQUIRE(patient3.getSurname() == "Turner");
+  REQUIRE(patient3.getAddress() == "address3");
+  REQUIRE(patient3.getEmail() == "email3");
+}
+
+TEST_CASE("patient4", "[patient4]")
+{
+  REQUIRE(patient4.getPatientID() == 4);
+  REQUIRE(patient4.getTitle() == "Mr.");
+  REQUIRE(patient4.getFirstName() == "David");
+  REQUIRE(patient4.getSurname() == "Grey");
+  REQUIRE(patient4.getAddress() == "address4");
+  REQUIRE(patient4.getEmail() == "email4");
+}
+
+TEST_CASE("patient5", "[patient5]")
+{
+  REQUIRE(patient5.getPatientID() == 5);
+  REQUIRE(patient5.getTitle() == "Mr.");
+  REQUIRE(patient5.getFirstName() == "Gordon");
+  REQUIRE(patient5.getSurname() == "Pike");
+  REQUIRE(patient5.getAddress() == "address5");
+  REQUIRE(patient5.getEmail() == "email5");
+}
+
+TEST_CASE("room1", "[room1]")
+{
+  REQUIRE(room1.getID() == 1);
+}
+
+TEST_CASE("room2", "[room2]")
+{
+  REQUIRE(room1.getID() == 2);
+}
+
+TEST_CASE("room3", "[room3]")
+{
+  REQUIRE(room1.getID() == 3);
+}
