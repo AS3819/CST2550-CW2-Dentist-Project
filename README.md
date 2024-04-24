@@ -1,1 +1,1 @@
-# CST2550-CW2-Dentist-Project
+# CST2550-Dentist-Appointment-Booking-System
