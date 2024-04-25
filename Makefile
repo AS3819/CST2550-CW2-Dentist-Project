@@ -9,7 +9,7 @@ Dentist_Programme: Dentist_Programme.cpp Print_Functions.h Person.o Dentist.o Pa
 Quicksort_Test: main.cpp Person.o Dentist.o Patient.o Appointment.o Quicksort.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-Testing_Programme: Testing_File.cpp catch.hpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o
+Testing_Programme: Testing_File.cpp catch.hpp Print_Functions.h Person.o Dentist.o Patient.o Appointment.o Room.o Data.o Input_Validation.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 Data.o: Data.cpp Data.h
